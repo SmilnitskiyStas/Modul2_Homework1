@@ -6,7 +6,8 @@
         {
             Console.WriteLine("Start working!");
 
-            string[] workStatusIngo = new string[150];
+            Started started = new Started();
+            started.Run();
         }
     }
 }

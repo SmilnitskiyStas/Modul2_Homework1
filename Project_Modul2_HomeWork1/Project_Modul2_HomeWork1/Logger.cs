@@ -6,28 +6,35 @@ using System.Threading.Tasks;
 
 namespace Project_Modul2_HomeWork1
 {
+    enum LogStatus
+    {
+        Info,
+        Warning,
+        Error
+    }
+
     internal class Logger
     {
-        private static Logger instance;
+        public static string[] logString = new string [150];
+
+        private static int countIteration = 0;
 
         private Logger() { }
 
-        public static Logger GetInstance()
+        public static string WriteLog(string TypeLog, string message)
         {
-            if (instance == null)
-            {
-                instance = new Logger();
-            }
+            //Console.WriteLine($"{DateTime.Now} | {TypeLog}: {message}");
 
-            return instance;
+            logString[countIteration] = $"{DateTime.Now} | {TypeLog}: {message}";
+
+            countIteration++;
+
+            File.WriteAllLines("LogFile.txt", logString);
+
+            return $"{DateTime.Now} | {TypeLog}: {message}";
         }
 
-        public void WriteLog(string TypeLog, string message)
-        {
-            Console.WriteLine($"{DateTime.Now}| {TypeLog}: {message}");
-        }
-
-        public string GetTypeLog(WorkStatus workStatus)
+        public static string GetTypeLog(LogStatus workStatus)
         {
             return workStatus.ToString();
         }

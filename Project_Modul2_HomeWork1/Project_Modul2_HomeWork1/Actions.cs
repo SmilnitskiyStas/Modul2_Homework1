@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project_Modul2_HomeWork1
+﻿namespace Project_Modul2_HomeWork1
 {
-    enum WorkStatus
-    {
-        Error,
-        Info,
-        Warning
-    }
     internal class Actions
     {
         public static Result FirstMethod()
         {
-            Logger log = Logger.GetInstance();
-            log.WriteLog(log.GetTypeLog(WorkStatus.Info), new Result(WorkStatus.Info).Message);
+            Result result = new Result(LogStatus.Info);
 
-            return new Result(WorkStatus.Info);
+            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Info), result.Message);
+
+            return result;
+        }
+
+        public static Result SecondMethod()
+        {
+            Result result = new Result(LogStatus.Warning);
+
+            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Warning), result.Message);
+
+            return result;
+        }
+
+        public static Result ThirdMethod()
+        {
+            Result result = new Result(LogStatus.Error);
+
+            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Error), result.Message);
+
+            return result;
         }
     }
 }

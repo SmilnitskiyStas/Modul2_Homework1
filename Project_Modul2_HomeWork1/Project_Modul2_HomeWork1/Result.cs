@@ -12,26 +12,47 @@ namespace Project_Modul2_HomeWork1
 
         public string Message { get; set; }
 
-        public Result(WorkStatus logName) 
+        public Result(LogStatus logName) 
         {
             if (logName.ToString().ToLower() == "info")
             {
-                Status = true;
-
-                Message = "Start method:";
+                InfoStatus();
             }
             else if (logName.ToString().ToLower() == "warning")
             {
-                Status = true;
-
-                Message = "Skipped logic in method:";
+                WarningStatus();
             }
             else 
             { 
-                Status = false;
-
-                Message = "I broke a logic";
+                ErrorStatus();
             }
+        }
+
+        private (bool, string) InfoStatus()
+        {
+            Status = true;
+
+            Message = "Start method:";
+
+            return (Status,  Message);
+        }
+
+        private (bool, string) WarningStatus()
+        {
+            Status = true;
+
+            Message = "Skipped logic in method:";
+
+            return (Status, Message);
+        }
+
+        private (bool, string) ErrorStatus()
+        {
+            Status = false;
+
+            Message = "I broke a logic";
+
+            return (Status, Message);
         }
     }
 }
