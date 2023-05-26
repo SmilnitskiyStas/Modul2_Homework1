@@ -12,33 +12,32 @@ namespace Project_Modul2_HomeWork1
 
         public void Run()
         {
-            Result[] results = new Result[3] { Actions.FirstMethod(), Actions.SecondMethod(), Actions.ThirdMethod() };
-
             Random random = new Random();
+
+            Result result = null;
 
             for (int i = 0; i < 100; i++)
             {
-                int randomInt = random.Next(1, 4);
+                int choice = random.Next(0, 3);
 
-                Result result = results[randomInt - 1];
+                switch (choice)
+                {
+                    case 0:
+                        result = Actions.FirstMethod();
+                        break;
+                    case 1:
+                        result = Actions.SecondMethod();
+                        break;
+                    case 2:
+                        result = Actions.ThirdMethod();
+                        break;
+                }
 
                 if (result.Status == false)
                 {
-                    string logger = Logger.WriteLog(Logger.GetTypeLog((LogStatus)randomInt - 1), $"Action failed by а reason: {result.Message}");
-
-                    Console.WriteLine(logger);
-                }
-                else if (result.Status == true && randomInt == 1)
-                {
-                    Actions.FirstMethod();
-                }
-                else
-                {
-                    Actions.SecondMethod();
+                    Logger.Instance().WriteLog(((EnumLogStatus)choice).ToString(), "Action failed by а reason: " + result.Message);
                 }
             }
-
-            string[] strings = Logger.logString;
         }
     }
 }

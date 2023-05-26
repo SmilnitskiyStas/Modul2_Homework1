@@ -12,7 +12,7 @@ namespace Project_Modul2_HomeWork1
 
         public string Message { get; set; }
 
-        public Result(LogStatus logName) 
+        public Result(EnumLogStatus logName) 
         {
             if (logName.ToString().ToLower() == "info")
             {
@@ -28,31 +28,25 @@ namespace Project_Modul2_HomeWork1
             }
         }
 
-        private (bool, string) InfoStatus()
+        private void InfoStatus()
         {
             Status = true;
 
             Message = "Start method:";
-
-            return (Status,  Message);
         }
 
-        private (bool, string) WarningStatus()
+        private void WarningStatus()
         {
             Status = true;
 
             Message = "Skipped logic in method:";
-
-            return (Status, Message);
         }
 
-        private (bool, string) ErrorStatus()
+        private void ErrorStatus()
         {
             Status = false;
 
             Message = "I broke a logic";
-
-            return (Status, Message);
         }
     }
 }

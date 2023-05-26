@@ -4,27 +4,33 @@
     {
         public static Result FirstMethod()
         {
-            Result result = new Result(LogStatus.Info);
+            Result result = new Result(EnumLogStatus.Info);
 
-            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Info), result.Message);
+            Logger log = Logger.Instance();
+
+            log.WriteLog(EnumLogStatus.Info.ToString(), result.Message);
 
             return result;
         }
 
         public static Result SecondMethod()
         {
-            Result result = new Result(LogStatus.Warning);
+            Result result = new Result(EnumLogStatus.Warning);
 
-            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Warning), result.Message);
+            Logger log = Logger.Instance();
+
+            log.WriteLog(EnumLogStatus.Warning.ToString(), result.Message);
 
             return result;
         }
 
         public static Result ThirdMethod()
         {
-            Result result = new Result(LogStatus.Error);
+            Result result = new Result(EnumLogStatus.Error);
 
-            Logger.WriteLog(Logger.GetTypeLog(LogStatus.Error), result.Message);
+            Logger log = Logger.Instance();
+
+            log.WriteLog(EnumLogStatus.Error.ToString(), result.Message);
 
             return result;
         }
