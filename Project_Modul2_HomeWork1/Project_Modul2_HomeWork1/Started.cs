@@ -38,6 +38,25 @@ namespace Project_Modul2_HomeWork1
                     Logger.Instance().WriteLog(((EnumLogStatus)choice).ToString(), "Action failed by а reason: " + result.Message);
                 }
             }
+
+            string[] logData = Logger.Instance().GetLogData();
+
+            WriteLogFile(logData);
+        }
+
+        private void WriteLogFile(string[] logData)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < logData.Length; i++)
+            {
+                if (logData[i] != null)
+                {
+                    stringBuilder.AppendLine(logData[i]);
+                }
+            }
+
+            File.WriteAllText("LogFile.txt", stringBuilder.ToString());
         }
     }
 }

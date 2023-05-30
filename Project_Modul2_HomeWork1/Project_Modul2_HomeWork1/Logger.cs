@@ -33,9 +33,11 @@ namespace Project_Modul2_HomeWork1
             Console.WriteLine(logString[countIteration]);
 
             countIteration++;
+        }
 
-
-            File.WriteAllLines("LogFile.txt", logString);
+        public string[] GetLogData()
+        {
+            return logString;
         }
     }
 }
